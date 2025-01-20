@@ -2,7 +2,7 @@ FROM ubuntu
 
 RUN <<EOF
 apt-get update
-apt-get install -y curl build-essential python3 git cmake pkg-config busybox
+apt-get install -y curl build-essential python3 python3-numpy python3-sklearn python3-sklearn-lib python-sklearn-doc git cmake pkg-config busybox
 EOF
 
 ARG TARGETARCH
@@ -99,6 +99,7 @@ EOF
 
 RUN <<EOF
 cd ${PYTHON_PATH}/lib/python3.13
+#pip install numpy
 find . -name __pycache__ -exec rm -rf {} \;
 rm -rf config-3.13-wasm32-wasi
 rm -rf _*_support* _pyrepl bdb concurrent curses ensurepip doctest* idlelib
