@@ -14,3 +14,8 @@ jobs:
       - run: ./build-image.sh
       - run: mvn dependency:go-offline -B -V
       - run: mvn install -B
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: trino-wasm-python-artifacts
+          path: /home/runner/.m2/repository/io/trino/trino-wasm-python/custom/
