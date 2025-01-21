@@ -2,7 +2,7 @@ FROM ubuntu
 
 RUN <<EOF
 apt-get update
-apt-get install -y curl build-essential python3 python3-numpy python3-sklearn python3-sklearn-lib python-sklearn-doc git cmake pkg-config busybox
+apt-get install -y curl build-essential python3 git cmake pkg-config busybox
 EOF
 
 ARG TARGETARCH
