@@ -1,8 +1,9 @@
+# Use Ubuntu as base image
 FROM ubuntu
 
 RUN <<EOF
 apt-get update
-apt-get install -y curl build-essential python3 python3-numpy python3-sklearn python3-sklearn-lib python-sklearn-doc git cmake pkg-config busybox
+apt-get install -y curl build-essential python3 python3-pip git cmake pkg-config busybox
 EOF
 
 ARG TARGETARCH
@@ -101,4 +102,11 @@ RUN <<EOF
 cd ${PYTHON_PATH}/lib/python3.13
 find . -name __pycache__ -exec rm -rf {} \;
 rm -rf config-3.13-wasm32-wasi
+EOF
+
+# Install pip using apt (now installed via apt) and then install NumPy globally
+RUN <<EOF
+apt-get install -y python3-pip
+python3 -m pip install --no-cache-dir numpy --break-system-packages
+python3 -m pip install --no-cache-dir stringcase --break-system-packages
 EOF
