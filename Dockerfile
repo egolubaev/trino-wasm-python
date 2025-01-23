@@ -110,3 +110,9 @@ apt-get install -y python3-pip
 python3 -m pip install --no-cache-dir numpy --break-system-packages
 python3 -m pip install --no-cache-dir stringcase --break-system-packages
 EOF
+
+RUN <<EOF
+cd /build/cpython
+python3 -m ensurepip
+python3 -m pip install --no-cache-dir numpy stringcase --break-system-packages
+EOF
